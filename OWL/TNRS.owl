@@ -1,0 +1,393 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<!DOCTYPE uridef[
+  <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns">
+  <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema">
+    <!ENTITY owl "http://www.w3.org/2002/07/owl">
+  <!ENTITY xsd "http://www.w3.org/2001/XMLSchema">
+]>
+
+<rdf:RDF
+  xmlns:rdf = "&rdf;#"
+  xmlns:rdfs ="&rdfs;#"
+  xmlns:owl ="&owl;#"
+  xmlns:xsd ="&xsd;#"
+  xmlns ="http://www.daml.org/services/owl-s/AmazonWS/1.1/ShoppingCart.owl#"
+ >
+
+<owl:Ontology rdf:about="">
+ <owl:versionInfo> </owl:versionInfo>
+ <rdfs:comment> 
+ </rdfs:comment>
+ <owl:imports rdf:resource="&owl;"/>
+</owl:Ontology>
+
+<!-- Created: Tue Aug 4 10:34:11 2015 -->
+
+<!-- FOR SUBMIT REQUEST -->		
+<owl:Class rdf:ID="TNRSSubmitRequest">
+</owl:Class>
+<owl:DatatypeProperty rdf:ID="requestURL">
+  <rdfs:domain rdf:resource="#TNRSSubmitRequest"/>
+  <rdfs:range  rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="query">
+  <rdfs:domain rdf:resource="#TNRSSubmitRequest"/>
+  <rdfs:range rdf:resource="&xsd;#string"/>
+</owl:DatatypeProperty>
+
+<!-- This class is used to define the instances returned by the Submit operations-->
+<owl:Class rdf:ID="TNRSSubmitResponse">
+</owl:Class>
+<owl:DatatypeProperty rdf:ID="status">
+  <rdfs:domain rdf:resource="#TNRSSubmitResponse"/>
+  <rdfs:range rdf:resource="&xsd;#string"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="message">
+  <rdfs:domain rdf:resource="#TNRSSubmitResponse"/>
+  <rdfs:range rdf:resource="&xsd;#string"/>
+</owl:DatatypeProperty>
+
+
+<!-- FOR RETRIEVE REQUEST -->		
+<owl:Class rdf:ID="TNRSRetrieveRequest">
+</owl:Class>
+<owl:DatatypeProperty rdf:ID="requestURL">
+  <rdfs:domain rdf:resource="#TNRSRetrieveRequest"/>
+  <rdfs:range  rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="token_id">
+  <rdfs:domain rdf:resource="#TNRSRetrieveRequest"/>
+  <rdfs:range rdf:resource="&xsd;#string"/>
+</owl:DatatypeProperty>
+
+<!-- This class is used to define the instances returned by the Submit operations-->
+<owl:Class rdf:ID="TNRSRetrieveResponse">
+</owl:Class>
+<owl:DatatypeProperty rdf:ID="status">
+  <rdfs:domain rdf:resource="#TNRSRetrieveResponse"/>
+  <rdfs:range rdf:resource="&xsd;#string"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="names">
+  <rdfs:domain rdf:resource="#TNRSRetrieveResponse"/>
+  <rdfs:range rdf:resource="&xsd;#TNRSRetrieveResponseNames"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="names">
+  <rdfs:domain rdf:resource="#TNRSRetrieveResponse"/>
+  <rdfs:range rdf:resource="&xsd;#TNRSRetrieveResponseMetadatas"/>
+</owl:DatatypeProperty>
+
+
+<owl:Class rdf:ID="TNRSRetrieveResponseNames">
+  <owl:intersectionOf rdf:parseType="owl:collection">
+    <owl:Class rdf:about="&owl;#List"/>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="&owl;#item"/>
+      <owl:toClass rdf:resource="#TNRSNames"/>
+    </owl:Restriction>
+  </owl:intersectionOf>
+</owl:Class>
+
+<owl:Class rdf:ID="TNRSRetrieveResponseMetadatas">
+  <owl:intersectionOf rdf:parseType="owl:collection">
+    <owl:Class rdf:about="&owl;#List"/>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="&owl;#item"/>
+      <owl:toClass rdf:resource="#TNRSMetadatas"/>
+    </owl:Restriction>
+  </owl:intersectionOf>
+</owl:Class>
+
+
+<owl:Class rdf:ID="TNRSNames">
+</owl:Class>
+<owl:DatatypeProperty rdf:ID="matchCount">
+  <rdfs:domain rdf:resource="#TNRSNames"/>
+  <rdfs:range rdf:resource="&xsd;#nonNegativeInteger"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="submittedName">
+  <rdfs:domain rdf:resource="#TNRSNames"/>
+  <rdfs:range rdf:resource="&xsd;#string"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="names">
+  <rdfs:domain rdf:resource="#TNRSNames"/>
+  <rdfs:range rdf:resource="&xsd;#TNRSNamesMatches_List"/>
+</owl:DatatypeProperty>
+
+<owl:Class rdf:ID="TNRSNamesMatches_List">
+  <owl:intersectionOf rdf:parseType="owl:collection">
+    <owl:Class rdf:about="&owl;#List"/>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="&owl;#item"/>
+      <owl:toClass rdf:resource="#TNRSNamesMatches"/>
+    </owl:Restriction>
+  </owl:intersectionOf>
+</owl:Class>
+
+<owl:Class rdf:ID="TNRSNamesMatches">
+</owl:Class>
+<owl:DatatypeProperty rdf:ID="acceptedName">
+  <rdfs:domain rdf:resource="#TNRSNamesMatches"/>
+  <rdfs:range rdf:resource="&xsd;#string"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="sourceId">
+  <rdfs:domain rdf:resource="#TNRSNamesMatches"/>
+  <rdfs:range rdf:resource="&xsd;#string"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="score">
+  <rdfs:domain rdf:resource="#TNRSNamesMatches"/>
+  <rdfs:range rdf:resource="&xsd;#string"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="matchedName">
+  <rdfs:domain rdf:resource="#TNRSNamesMatches"/>
+  <rdfs:range rdf:resource="&xsd;#string"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="uri">
+  <rdfs:domain rdf:resource="#TNRSNamesMatches"/>
+  <rdfs:range  rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+</owl:DatatypeProperty>
+
+
+<owl:Class rdf:ID="TNRSMetadatas">
+</owl:Class>
+<owl:DatatypeProperty rdf:ID="sub_date">
+  <rdfs:domain rdf:resource="#TNRSMetadatas"/>
+  <rdfs:range rdf:resource="&xsd;#string"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="resolver_version">
+  <rdfs:domain rdf:resource="#TNRSMetadatas"/>
+  <rdfs:range rdf:resource="&xsd;#string"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="jobId">
+  <rdfs:domain rdf:resource="#TNRSMetadatas"/>
+  <rdfs:range rdf:resource="&xsd;#string"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="spellcheckers">
+  <rdfs:domain rdf:resource="#TNRSMetadatas"/>
+  <rdfs:range rdf:resource="&xsd;#TNRSMetadatasSpellcheckers_List"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="sources">
+  <rdfs:domain rdf:resource="#TNRSMetadatas"/>
+  <rdfs:range rdf:resource="&xsd;#TNRSMetadatasSources_List"/>
+</owl:DatatypeProperty>
+
+<owl:Class rdf:ID="TNRSMetadatasSpellcheckers_List">
+  <owl:intersectionOf rdf:parseType="owl:collection">
+    <owl:Class rdf:about="&owl;#List"/>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="&owl;#item"/>
+      <owl:toClass rdf:resource="#TNRSMetadatasSpellcheckers"/>
+    </owl:Restriction>
+  </owl:intersectionOf>
+</owl:Class>
+
+<owl:Class rdf:ID="TNRSMetadatasSources_List">
+  <owl:intersectionOf rdf:parseType="owl:collection">
+    <owl:Class rdf:about="&owl;#List"/>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="&owl;#item"/>
+      <owl:toClass rdf:resource="#TNRSMetadatasSources"/>
+    </owl:Restriction>
+  </owl:intersectionOf>
+</owl:Class>
+
+<owl:Class rdf:ID="TNRSMetadatasSpellcheckers">
+</owl:Class>
+<owl:DatatypeProperty rdf:ID="name">
+  <rdfs:domain rdf:resource="#TNRSMetadatasSpellcheckers"/>
+  <rdfs:range rdf:resource="&xsd;#string"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="description">
+  <rdfs:domain rdf:resource="#TNRSMetadatasSpellcheckers"/>
+  <rdfs:range rdf:resource="&xsd;#string"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="uri">
+  <rdfs:domain rdf:resource="#TNRSMetadatasSpellcheckers"/>
+  <rdfs:range  rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="sourceId">
+  <rdfs:domain rdf:resource="#TNRSMetadatasSpellcheckers"/>
+  <rdfs:range rdf:resource="&xsd;#nonNegativeInteger"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="publication">
+  <rdfs:domain rdf:resource="#TNRSMetadatasSpellcheckers"/>
+   <rdfs:range  rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="call">
+  <rdfs:domain rdf:resource="#TNRSMetadatasSpellcheckers"/>
+  <rdfs:range rdf:resource="&xsd;#string"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="rank">
+  <rdfs:domain rdf:resource="#TNRSMetadatasSpellcheckers"/>
+  <rdfs:range rdf:resource="&xsd;#nonNegativeInteger"/>
+</owl:DatatypeProperty>
+
+<owl:Class rdf:ID="TNRSMetadatasSources">
+</owl:Class>
+<owl:DatatypeProperty rdf:ID="status">
+  <rdfs:domain rdf:resource="#TNRSMetadatasSources"/>
+  <rdfs:range rdf:resource="&xsd;#string"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="name">
+  <rdfs:domain rdf:resource="#TNRSMetadatasSources"/>
+  <rdfs:range rdf:resource="&xsd;#string"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="description">
+  <rdfs:domain rdf:resource="#TNRSMetadatasSources"/>
+  <rdfs:range rdf:resource="&xsd;#string"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="uri">
+  <rdfs:domain rdf:resource="#TNRSMetadatasSources"/>
+  <rdfs:range  rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="sourceId">
+  <rdfs:domain rdf:resource="#TNRSMetadatasSources"/>
+  <rdfs:range rdf:resource="&xsd;#string"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="publication">
+  <rdfs:domain rdf:resource="#TNRSMetadatasSources"/>
+  <rdfs:range rdf:resource="&xsd;#string"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="rank">
+  <rdfs:domain rdf:resource="#TNRSMetadatasSources"/>
+  <rdfs:range rdf:resource="&xsd;#nonNegativeInteger"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="code">
+  <rdfs:domain rdf:resource="#TNRSMetadatasSources"/>
+  <rdfs:range rdf:resource="&xsd;#string"/>
+</owl:DatatypeProperty>
+
+
+<!-- FOR SOURCE/LIST REQUEST -->
+<owl:Class rdf:ID="TNRSGetSourceListRequest">
+</owl:Class>
+<owl:DatatypeProperty rdf:ID="requestURL">
+  <rdfs:domain rdf:resource="#TNRSGetSourceListRequest"/>
+  <rdfs:range  rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+</owl:DatatypeProperty>
+
+<!-- This class is used to define the instances returned by the Get Source List operations-->
+<owl:Class rdf:ID="TNRSGetSourceListResponse">
+</owl:Class>
+<owl:DatatypeProperty rdf:ID="status">
+  <rdfs:domain rdf:resource="#TNRSGetSourceListResponse"/>
+  <rdfs:range rdf:resource="&xsd;#string"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="sources">
+  <rdfs:domain rdf:resource="#TNRSGetSourceListResponse"/>
+  <rdfs:range rdf:resource="&xsd;#TNRS_GetSourcesList_Sources_List"/>
+</owl:DatatypeProperty>
+
+<owl:Class rdf:ID="TNRS_GetSourcesList_Sources_List">
+  <owl:intersectionOf rdf:parseType="owl:collection">
+    <owl:Class rdf:about="&owl;#List"/>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="&owl;#item"/>
+      <owl:toClass rdf:resource="#TNRS_GetSourcesList_Sources"/>
+    </owl:Restriction>
+  </owl:intersectionOf>
+</owl:Class>
+
+<owl:Class rdf:ID="TNRS_GetSourcesList_Sources">
+</owl:Class>
+<owl:DatatypeProperty rdf:ID="sourceId">
+  <rdfs:domain rdf:resource="#TNRS_GetSourcesList_Sources"/>
+  <rdfs:range rdf:resource="&xsd;#string"/>
+</owl:DatatypeProperty>
+
+<!-- FOR SOURCE/<Source_Id> REQUEST -->
+<owl:Class rdf:ID="TNRSGetSourcebyIDRequest">
+</owl:Class>
+<owl:DatatypeProperty rdf:ID="requestURL">
+  <rdfs:domain rdf:resource="#TNRSGetSourcebyIDRequest"/>
+  <rdfs:range  rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="source_id">
+  <rdfs:domain rdf:resource="#TNRSGetSourcebyIDRequest"/>
+  <rdfs:range rdf:resource="&xsd;#string"/>
+</owl:DatatypeProperty>
+
+
+<!-- This class is used to define the instances returned by the Get Source By ID operations-->
+<owl:Class rdf:ID="TNRSGetSourcebyIDResponse">
+</owl:Class>
+<owl:DatatypeProperty rdf:ID="status">
+  <rdfs:domain rdf:resource="#TNRSGetSourcebyIDResponse"/>
+  <rdfs:range rdf:resource="&xsd;#string"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="sourceId">
+  <rdfs:domain rdf:resource="#TNRSGetSourcebyIDResponse"/>
+  <rdfs:range rdf:resource="&xsd;#string"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="details">
+  <rdfs:domain rdf:resource="#TNRSGetSourcebyIDRequest"/>
+  <rdfs:range rdf:resource="&xsd;#TNRS_GetSourceByID_Sources"/>
+</owl:DatatypeProperty>
+
+
+<owl:Class rdf:ID="TNRS_GetSourceByID_Sources">
+</owl:Class>
+<owl:DatatypeProperty rdf:ID="name">
+  <rdfs:domain rdf:resource="#TNRS_GetSourceByID_Sources"/>
+  <rdfs:range rdf:resource="&xsd;#string"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="description">
+  <rdfs:domain rdf:resource="#TNRS_GetSourceByID_Sources"/>
+  <rdfs:range rdf:resource="&xsd;#string"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="uri">
+  <rdfs:domain rdf:resource="#TNRS_GetSourceByID_Sources"/>
+  <rdfs:range  rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="sourceId">
+  <rdfs:domain rdf:resource="#TNRS_GetSourceByID_Sources"/>
+  <rdfs:range rdf:resource="&xsd;#string"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="sourceId">
+  <rdfs:domain rdf:resource="#TNRS_GetSourceByID_Sources"/>
+  <rdfs:range rdf:resource="&xsd;#string"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="publication">
+  <rdfs:domain rdf:resource="#TNRS_GetSourceByID_Sources"/>
+  <rdfs:range rdf:resource="&xsd;#string"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="call">
+  <rdfs:domain rdf:resource="#TNRS_GetSourceByID_Sources"/>
+  <rdfs:range rdf:resource="&xsd;#string"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="rank">
+  <rdfs:domain rdf:resource="#TNRS_GetSourceByID_Sources"/>
+  <rdfs:range rdf:resource="&xsd;#nonNegativeInteger"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="code">
+  <rdfs:domain rdf:resource="#TNRSMetadatasSources"/>
+  <rdfs:range rdf:resource="&xsd;#string"/>
+</owl:DatatypeProperty>
+
+<!-- FOR delete/<token_id> REQUEST -->
+<owl:Class rdf:ID="TNRSDeleteRequest">
+</owl:Class>
+<owl:DatatypeProperty rdf:ID="requestURL">
+  <rdfs:domain rdf:resource="#TNRSDeleteRequest"/>
+  <rdfs:range  rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="token_id">
+  <rdfs:domain rdf:resource="#TNRSDeleteRequest"/>
+  <rdfs:range rdf:resource="&xsd;#string"/>
+</owl:DatatypeProperty>
+
+
+<!-- This class is used to define the instances returned by the Delete operations-->
+<owl:Class rdf:ID="TNRSDeleteResponse">
+</owl:Class>
+<owl:DatatypeProperty rdf:ID="status">
+  <rdfs:domain rdf:resource="#TNRSDeleteResponse"/>
+  <rdfs:range rdf:resource="&xsd;#string"/>
+</owl:DatatypeProperty>
+<owl:DatatypeProperty rdf:ID="message">
+  <rdfs:domain rdf:resource="#TNRSDeleteResponse"/>
+  <rdfs:range rdf:resource="&xsd;#string"/>
+</owl:DatatypeProperty>
+
+</rdf:RDF>
+
+
