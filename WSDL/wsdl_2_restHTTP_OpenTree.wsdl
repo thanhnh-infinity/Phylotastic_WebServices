@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl2:description xmlns:wsdl2="http://www.w3.org/ns/wsdl" xmlns:tns="http://axis2.apache.org" xmlns:wsoap="http://www.w3.org/ns/wsdl/soap" xmlns:wrpc="http://www.w3.org/ns/wsdl/rpc" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsdlx="http://www.w3.org/ns/wsdl-extensions" xmlns:ns="http://axis2.apache.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:whttp="http://www.w3.org/ns/wsdl/http" targetNamespace="http://axis2.apache.org">
+    <wsdl2:types>
+        <xs:schema xmlns:ax21="http://axis2.apache.org" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://axis2.apache.org">    
+            <xs:element name="study_list">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="storedtree" nillable="true" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="ott_id">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="storedtree" nillable="true" type="xs:long"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="OpenTreeAboutResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="OpenTreeSubTree_1_ott_id_Response">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GraphAboutResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GraphNodeInfo_1_ott_id_Response">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl2:types>
+    <wsdl2:interface name="ServiceInterface">
+        <wsdl2:operation name="OpenTreeAbout" pattern="http://www.w3.org/ns/wsdl/in-out">
+            <wsdl2:input element="ns:study_list" wsaw:Action="urn:study_list"/>
+            <wsdl2:output element="ns:OpenTreeAboutResponse" wsaw:Action="urn:OpenTreeAboutResponse"/>
+        </wsdl2:operation>
+        <wsdl2:operation name="OpenTreeSubTree_1_ott_id" pattern="http://www.w3.org/ns/wsdl/in-out">
+            <wsdl2:input element="ns:ott_id" wsaw:Action="urn:ott_id"/>
+            <wsdl2:output element="ns:OpenTreeSubTree_1_ott_id_Response" wsaw:Action="urn:OpenTreeSubTree_1_ott_id_Response"/>
+        </wsdl2:operation>
+        <wsdl2:operation name="GraphAbout" pattern="http://www.w3.org/ns/wsdl/in-out">
+            <wsdl2:output element="ns:GraphAboutResponse" wsaw:Action="urn:GraphAboutResponse"/>
+        </wsdl2:operation>
+        <wsdl2:operation name="GraphNodeInfo_1_ott_id" pattern="http://www.w3.org/ns/wsdl/in-out">
+		    <wsdl2:input element="ns:ott_id" wsaw:Action="urn:ott_id"/>
+            <wsdl2:output element="ns:GraphNodeInfo_1_ott_id_Response" wsaw:Action="urn:GraphNodeInfo_1_ott_id_Response"/>
+        </wsdl2:operation>
+    </wsdl2:interface>
+    <wsdl2:binding name="OpenTreeServiceHttpBinding" interface="tns:ServiceInterface" type="http://www.w3.org/ns/wsdl/http">
+        <wsdl2:operation ref="tns:OpenTreeAbout" whttp:location="tree_of_life/about" whttp:method="POST" whttp:contentEncodingDefault="application/json" whttp:queryParameterSeparator=""/>
+		<wsdl2:operation ref="tns:OpenTreeSubTree_1_ott_id" whttp:location="tree_of_life/subtree" whttp:method="POST" whttp:contentEncodingDefault="application/json" whttp:queryParameterSeparator=""/>  
+		<wsdl2:operation ref="tns:GraphAbout" whttp:location="graph/about" whttp:method="POST" whttp:contentEncodingDefault="application/json" whttp:queryParameterSeparator=""/>
+		<wsdl2:operation ref="tns:GraphNodeInfo_1_ott_id" whttp:location="graph/node_info" whttp:method="POST" whttp:contentEncodingDefault="application/json" whttp:queryParameterSeparator=""/>
+    </wsdl2:binding>
+    <wsdl2:service name="OpenTreeService" interface="tns:ServiceInterface">
+        <wsdl2:endpoint name="OpenTreeServiceHttpEndpoint" binding="tns:OpenTreeServiceHttpBinding" address="http://api.opentreeoflife.org/v2/"/>
+    </wsdl2:service>
+</wsdl2:description>
